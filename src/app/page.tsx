@@ -17,7 +17,7 @@ export default async function Home({
 
   return (
     <main className="m-8 grid">
-      <h1 className="self-center justify-self-center">Solace Advocates</h1>
+      <h1 className="self-center justify-self-center text-center">Solace Advocates</h1>
       <AdvocatesTable data={advocates} />
     </main>
   );
