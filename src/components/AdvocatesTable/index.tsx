@@ -6,7 +6,7 @@ import type { ChangeEvent } from "react";
 import { kebabCase } from "lodash";
 
 export default function AdvocatesTable(data) {
-  console.log('In AdvocatesTable.tsx, this is data?.data: ', JSON.parse(data?.data?.value));
+  // console.log('In AdvocatesTable.tsx, this is data?.data: ', JSON.parse(data?.data?.value));
   const [advocates, setAdvocates] = useState([]);
   console.log('In AdvocatesTable.tsx, this is advocates: ', advocates);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
