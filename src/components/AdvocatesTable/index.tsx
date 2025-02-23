@@ -1,61 +1,18 @@
 'use client';
 
-import { parse } from "path";
 import { useState, useEffect } from "react";
-import type { ChangeEvent } from "react";
 import { kebabCase } from "lodash";
 import AdvocatesSearch from "../AdvocatesSearch";
 
+// @ts-expect-error
 export default function AdvocatesTable(data) {
-  // console.log('In AdvocatesTable.tsx, this is data?.data: ', JSON.parse(data?.data?.value));
   const [advocates, setAdvocates] = useState([]);
-  console.log('In AdvocatesTable.tsx, this is advocates: ', advocates);
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const parsedData = JSON.parse(data?.data?.value)?.data;
-    console.log('In useEffect, this is parsedData: ', parsedData);
     
     setAdvocates(parsedData)
-  }, [data]);
-
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // const searchTerm = e.target.value;
-    setSearchTerm(e.target.value)
-
-    // document.getElementById("search-term").innerHTML = searchTerm;
-
-    // console.log("filtering advocates...");
-    // const filteredAdvocates = advocates.filter((advocate) => {
-    //   return (
-    //     advocate.firstName.includes(searchTerm) ||
-    //     advocate.lastName.includes(searchTerm) ||
-    //     advocate.city.includes(searchTerm) ||
-    //     advocate.degree.includes(searchTerm) ||
-    //     advocate.specialties.includes(searchTerm) ||
-    //     advocate.yearsOfExperience.includes(searchTerm)
-    //   );
-    // });
-
-    // setFilteredAdvocates(filteredAdvocates);
-  };
-
-  const onClick = () => {
-    const filteredAdvocates = advocates.filter((advocate) => {
-      return (
-        advocate?.firstName?.includes(searchTerm) ||
-        advocate?.lastName?.includes(searchTerm) ||
-        advocate?.city?.includes(searchTerm) ||
-        advocate?.degree?.includes(searchTerm) ||
-        advocate?.specialties?.includes(searchTerm) ||
-        advocate?.yearsOfExperience?.includes(searchTerm)
-      );
-    });
-
-    setFilteredAdvocates(filteredAdvocates);
-  };
+  }, [data?.data?.value]);
 
   return (
     <div style={{ margin: "24px" }}>

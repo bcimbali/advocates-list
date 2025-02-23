@@ -1,9 +1,6 @@
 'use client';
 
-import { parse } from "path";
-import { useState, useEffect } from "react";
-import type { ChangeEvent } from "react";
-import { kebabCase } from "lodash";
+import { useState } from "react";
 import { usePathname, useRouter } from 'next/navigation'
 
 type paramsTypes = {
@@ -17,7 +14,7 @@ export default function AdvocatesSearch() {
   const pathname = usePathname();
   const router = useRouter();
 
-  function search(formData: FormData) {
+  const search = (formData: FormData) => {
     const params = [];
     for (const pair of formData.entries()) {
       console.log('In index.tsx, this is pair: ', pair);
@@ -29,12 +26,19 @@ export default function AdvocatesSearch() {
     router.push(`${pathname}?${queryString}`);
   }
 
+  const clearSearch = () => {
+    router.push(pathname);
+  }
+
   return (
+    <div className="form-wrapper">
     <form action={search}>
       <input onChange={(e) => setFirstName(e?.target?.value)} value={firstName} name="firstName" />
       <input onChange={(e) => setLastName(e?.target?.value)} value={lastName} name="lastName" />
       <button>Search!</button>
     </form>
+    <button type="button" onClick={clearSearch}>Clear Search</button>
+    </div>
   )
 
 };
