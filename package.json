@@ -12,13 +12,16 @@
     "seed": "node --loader esbuild-register/loader -r esbuild-register ./src/db/seed/index.ts"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.0.8",
     "drizzle-orm": "^0.39.3",
+    "lodash": "^4.17.21",
     "next": "^15.1.7",
     "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.15",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
