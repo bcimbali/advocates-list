@@ -1,0 +1,11 @@
+If I had more time on this Search Params PR, I would:
+- Make sure each field on the advocates is search-able. Currently, I just wired up the first & last names.
+- I may explore using Tanstack's React Query as well.
+- Add pagination / test with more advocates.
+- Add sorting.
+- Show a loading state / skeleton loaders.
+- Add a "No results Found" state.
+- Adding form validation.
+- DRYing up and simplifying the way I'm using the query params in the API call.  I only used 2 params but it got a bit ugly quick.  With more time, that could get streamlined and cleaned up a bit.
+- Add tests.
+- As always, add more docs.
