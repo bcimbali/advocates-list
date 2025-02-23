@@ -4,6 +4,7 @@ import { parse } from "path";
 import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
 import { kebabCase } from "lodash";
+import AdvocatesSearch from "../AdvocatesSearch";
 
 export default function AdvocatesTable(data) {
   // console.log('In AdvocatesTable.tsx, this is data?.data: ', JSON.parse(data?.data?.value));
@@ -11,16 +12,6 @@ export default function AdvocatesTable(data) {
   console.log('In AdvocatesTable.tsx, this is advocates: ', advocates);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
-  // useEffect(() => {
-  //   console.log("fetching advocates...");
-  //   fetch("/api/advocates").then((response) => {
-  //     response.json().then((jsonResponse) => {
-  //       setAdvocates(jsonResponse.data);
-  //       setFilteredAdvocates(jsonResponse.data);
-  //     });
-  //   });
-  // }, []);
 
   useEffect(() => {
     const parsedData = JSON.parse(data?.data?.value)?.data;
@@ -71,14 +62,7 @@ export default function AdvocatesTable(data) {
       <pre>
         {data?.data?.value}
       </pre>
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span id="search-term"></span>
-        </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} value={searchTerm} />
-        <button onClick={onClick}>Reset Search</button>
-      </div>
+      <AdvocatesSearch />
       <br />
       <br />
       <table>
