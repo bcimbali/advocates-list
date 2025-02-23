@@ -9,14 +9,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Badge } from "../ui/badge";
 import { kebabCase } from "lodash";
+import parsePhoneNumber from 'libphonenumber-js';
 
+//@ts-expect-error
 export function AdvocateCard({ advocate }) {
-  console.log('In iAdvocateCard, this is advocate: ', advocate);
   const advocateName = `${advocate?.firstName} ${advocate?.lastName}`;
+  const parsedPhone = parsePhoneNumber(advocate?.phoneNumber?.toString(), 'US');
+
   return (
     <Card className="overflow-hidden">
       <CardHeader>
@@ -25,7 +25,7 @@ export function AdvocateCard({ advocate }) {
       </CardHeader>
       <CardContent className="overflow-hidden">
         <p className="font-bold">City: <span className="font-normal">{advocate?.city}</span></p>
-        <p className="font-bold">Phone: <span className="font-normal">{advocate?.phoneNumber}</span></p>
+        <p className="font-bold">Phone: <span className="font-normal">{parsedPhone?.formatNational()}</span></p>
         <p className="font-bold">Specialties:</p>
         <ul className="my-6 ml-6 list-disc mt-0 [&>li]:mt-2">
         {advocate?.specialties?.slice(0, 3)?.map((specialty) => (
