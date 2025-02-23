@@ -16,9 +16,8 @@ export default async function Home({
   const advocates = data?.json();
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
-      <br />
+    <main className="m-8 grid">
+      <h1 className="self-center justify-self-center">Solace Advocates</h1>
       <AdvocatesTable data={advocates} />
     </main>
   );

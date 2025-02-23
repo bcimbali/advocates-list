@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
 type paramsTypes = {
   [key: string]: string | string[] | undefined | FormDataEntryValue;
@@ -39,16 +42,25 @@ export default function AdvocatesSearch() {
 
   const clearSearch = () => {
     router.push(pathname);
+    setFirstName('');
+    setLastName('');
   }
 
   return (
     <div className="form-wrapper">
-    <form action={search}>
-      <input onChange={(e) => setFirstName(e?.target?.value)} value={firstName} name="firstName" />
-      <input onChange={(e) => setLastName(e?.target?.value)} value={lastName} name="lastName" />
-      <button>Search</button>
+    <form action={search} className="grid gap-4 md:grid-cols-4 items-end">
+      <div>
+        <Label htmlFor="firstName">First Name</Label>
+        <Input onChange={(e) => setFirstName(e?.target?.value)} value={firstName} name="firstName" />
+      </div>
+      
+      <div>
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input onChange={(e) => setLastName(e?.target?.value)} value={lastName} name="lastName" />
+      </div>
+      <Button>Search</Button>
+    <Button type="button" variant="outline" onClick={clearSearch}>Clear Search</Button>
     </form>
-    <button type="button" onClick={clearSearch}>Clear Search</button>
     </div>
   )
 
