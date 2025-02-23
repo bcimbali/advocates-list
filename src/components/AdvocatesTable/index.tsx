@@ -16,9 +16,6 @@ export default function AdvocatesTable(data) {
 
   return (
     <div style={{ margin: "24px" }}>
-      <pre>
-        {data?.data?.value}
-      </pre>
       <AdvocatesSearch />
       <br />
       <br />
