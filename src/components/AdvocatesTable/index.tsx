@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { kebabCase } from "lodash";
 import AdvocatesSearch from "../AdvocatesSearch";
+import { AdvocateCard } from "../AdvocateCard";
 
 // @ts-expect-error
 export default function AdvocatesTable(data) {
@@ -18,40 +19,14 @@ export default function AdvocatesTable(data) {
     <div style={{ margin: "24px" }}>
       <AdvocatesSearch />
       <br />
-      <br />
-      <table>
-        <thead>
-          <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Degree</th>
-          <th>Specialties</th>
-          <th>Years of Experience</th>
-          <th>Phone Number</th>
-          </tr>
-        </thead>
-        <tbody>
-          {advocates?.map((advocate) => {
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {advocates?.map((advocate) => {
             const key = `${advocate?.firstName}-${advocate?.lastName}-${kebabCase(advocate?.city)}`
             return (
-              <tr key={key}>
-                <td>{advocate?.firstName}</td>
-                <td>{advocate?.lastName}</td>
-                <td>{advocate?.city}</td>
-                <td>{advocate?.degree}</td>
-                <td>
-                  {advocate?.specialties.map((s) => (
-                    <div key={`${key}-${kebabCase(s)}`}>{s}</div>
-                  ))}
-                </td>
-                <td>{advocate?.yearsOfExperience}</td>
-                <td>{advocate?.phoneNumber}</td>
-              </tr>
+              <AdvocateCard key={key} advocate={advocate} />
             );
-          })}
-        </tbody>
-      </table>
+        })}
+      </div>
     </div>
   );
 }
